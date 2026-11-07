@@ -7,8 +7,6 @@ subtitle: Ask, copy, run, and try one change.
 
 **Machine Learning for Food Safety and Toxicology**
 
-*Congjia Chen · Teaching assistant*
-
 Start with an empty R script. Ask AI to write code, paste it into RStudio and run it. Then ask for one change and save your script.
 
 You will use four **invented milk-sample counts** to make a small calculation and a bar chart.

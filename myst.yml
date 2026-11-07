@@ -1,38 +1,37 @@
 version: 1
 project:
   id: start-from-zero-r
-  title: Start from zero with R and AI
-  subtitle: A short R guide for biology students
+  title: Your first R code with AI
+  subtitle: Ask, copy, run, and try one change.
   authors:
     - name: Congjia Chen
-  description: Learn to run R, handle a missing value and check an AI reply with four invented milk records.
+  description: Install R and RStudio, ask AI for code, paste and run it, change a chart and save one script.
   toc:
     - file: intro.md
     - title: Start from zero
       children:
         - file: chapters/00-start-here.md
-        - file: chapters/01-first-run.ipynb
-        - file: chapters/02-minimum-r.ipynb
-        - file: chapters/03-working-with-ai.ipynb
+        - file: chapters/01-ask-ai.md
+        - file: chapters/02-copy-and-run.md
+        - file: chapters/03-change-and-save.md
   exclude:
     - .build-venv/**
     - .R-library/**
     - .jupyter/**
     - .tools/**
     - _build/**
-    - authoring/**
     - tools/**
     - outputs/**
     - validation/**
     - README.md
 site:
   template: book-theme
-  title: Start from zero with R and AI
+  title: Your first R code with AI
   options:
     logo: assets/logo.svg
     favicon: assets/favicon.ico
-    logo_text: Start from zero
-    logo_alt: Start from zero with R and AI
+    logo_text: R with AI
+    logo_alt: Code prompt and sparkle
     style: assets/book.css
     hide_authors: true
     hide_made_with_myst: false

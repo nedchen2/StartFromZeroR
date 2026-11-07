@@ -37,35 +37,31 @@ jobs:
           node-version: '24'
       - name: Check public file boundaries
         run: python tools/check_publication.py
-      - name: Install R and its notebook kernel from Ubuntu packages
+      - name: Install R
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends r-base r-cran-irkernel
+          sudo apt-get install --yes --no-install-recommends r-base
       - name: Install isolated Python author environment
         run: |
           python -m venv .build-venv
           .build-venv/bin/python -m pip install -r requirements-build.txt
           echo "$GITHUB_WORKSPACE/.build-venv/bin" >> "$GITHUB_PATH"
-      - name: Execute all R notebooks in fresh kernels
-        run: python tools/execute_book.py
-      - name: Generate the student project
-        run: python tools/package_student.py
-      - name: Verify the extracted student project
-        run: python tools/verify_student.py
+      - name: Run the R examples and create their charts
+        run: python tools/verify_examples.py
       - name: Build the website strictly for its GitHub Pages subpath
         run: jupyter-book build --html --strict
       - name: Check page, asset, download and fragment targets
         run: python tools/verify_html.py --base-url "$BASE_URL"
       - name: Record the CI R environment
         run: Rscript --vanilla -e 'sessionInfo()' > validation/ci-r-session.txt
-      - name: Save verification evidence and student project
+      - name: Save verification evidence
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
-          name: short-guide-checks-and-student-project
+          name: short-guide-checks
           path: |
             validation/*.json
             validation/ci-r-session.txt
-            downloads/start-from-zero-student.zip
+            outputs/reference/*.png
           retention-days: 30
       - name: Package the verified website
         if: github.event_name != 'pull_request'
